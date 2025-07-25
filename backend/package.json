@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npx nodemon --watch src --exec ts-node src/main.ts"
+    "dev": "npx nodemon --watch src --exec ts-node src/main.ts",
+    "test": "vitest"
   },
   "keywords": [],
   "author": "",
