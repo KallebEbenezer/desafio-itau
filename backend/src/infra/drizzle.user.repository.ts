@@ -1,26 +1,38 @@
 import { db } from "../db";
-import { user } from "../db/schema";
+import { eq, and, gte, sql } from "drizzle-orm"
+import { operation, user } from "../db/schema";
 import { User } from "../domain/types/user.types";
 import { UserContractsRepo } from "../application/contracts/user.contracts";
-import { UserInputDTO, UserOutputDTO } from "../DTO/userDTO/user.dto";
-import { idGenerate } from "../../utils/random.uuid";
+import { UserInputDTO } from "../DTO/user.dto";
+import { Operation } from "../domain/types/operation.types";
 
 export class UserInfraRepository implements UserContractsRepo {
-  async save(data: UserInputDTO): Promise<User> { 
-    // await db.insert(user).values({ 
-    //   name: data.name, 
-    //   email: data.email, 
-    //   brokerage: 
-    //   data.brokerage 
-    // })
-    return {
-      id: idGenerate.uuid,
-      brokerage: data.brokerage,
-      email: data.email,
-      name: data.name
+
+  async save(data: UserInputDTO): Promise<void> {
+    try{
+      await db.insert(user).values({ 
+        name: data.name, 
+        email: data.email, 
+        brokerage: 
+        data.brokerage 
+      })
+    }
+    catch(err) {
+      if(err instanceof Error) throw new Error(err.message);
     }
   }
+
   async getAll(): Promise<User[]>{
    return await db.query.user.findMany(); 
+  }
+
+  async fetchOperations(data: {userId: number, assetId: number }): Promise<Operation[]> {
+    return await db.select()
+      .from(operation)
+      .where(and(
+        eq(operation.userId, data.userId),
+        eq(operation.assetId, data.assetId),
+        gte(operation.dateHour, sql`NOW() - INTERVAL 30 day`)
+      ));
   }
 }

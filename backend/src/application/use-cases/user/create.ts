@@ -1,7 +1,6 @@
 import { User } from "../../../domain/models/User";
 import { UserContractsRepo } from "../../contracts/user.contracts";
-import { idGenerate } from "../../../../utils/random.uuid";
-import { UserInputDTO } from "../../../DTO/userDTO/user.dto";
+import { UserInputDTO } from "../../../DTO/user.dto";
 
 export class CreateUserUseCase {
   constructor(
@@ -9,8 +8,12 @@ export class CreateUserUseCase {
   ) {}
   
   async execute(data: UserInputDTO) {
-    const id = idGenerate.uuid;
-    const user = new User(id, data.name, data.email, data.brokerage);
-    await this.userRepository.save(user);
+    try{
+      const user = new User(data.name, data.email, data.brokerage);
+      await this.userRepository.save(user);
+    }
+    catch(err) {
+      if(err instanceof Error) throw err
+    }
   }
-}
+} 

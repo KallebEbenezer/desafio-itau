@@ -1,5 +1,5 @@
 import { randomUUID } from "crypto";
 
-export const idGenerate = {
-  uuid: Number(randomUUID())
+export function idGenerate() {
+  return Number(randomUUID());
 }
