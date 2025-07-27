@@ -1,5 +1,5 @@
 import { FastifyRequest, FastifyReply } from "fastify";
-import { userUsecases } from "../infra/adatpters.infra/user.adapters";
+import { userUsecases } from "../infra/adapters.infra/user.adapters";
 
 interface CreateUserBody {
   email: string;

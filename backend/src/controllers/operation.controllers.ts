@@ -1,5 +1,5 @@
 import { FastifyRequest, FastifyReply } from "fastify";
-import { operationUseCases } from "../infra/adatpters.infra/operation.adapters";
+import { operationUseCases } from "../infra/adapters.infra/operation.adapters";
 import { OperationInputDTO } from "../DTO/operation.dto";
 
 export const createOperation = async(

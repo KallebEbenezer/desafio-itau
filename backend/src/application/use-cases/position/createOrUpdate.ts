@@ -1,4 +1,4 @@
-import { positionUseCases } from "../../../infra/adatpters.infra/position.adapters";
+import { positionUseCases } from "../../../infra/adapters.infra/position.adapters";
 
 export class CreateOrUpdateUseCase {
   async execute(data: { userId: number, assetId: number, type: string }) {

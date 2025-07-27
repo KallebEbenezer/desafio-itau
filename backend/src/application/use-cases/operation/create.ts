@@ -1,6 +1,6 @@
 import { OperationInputDTO } from "../../../DTO/operation.dto";
 import { OperationContractsRepo} from "../../contracts/operation.contracts";
-import { positionUseCases } from "../../../infra/adatpters.infra/position.adapters";
+import { positionUseCases } from "../../../infra/adapters.infra/position.adapters";
 
 export class CreateOperationUseCase {
   constructor(

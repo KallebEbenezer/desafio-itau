@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { assetUseCases } from "../infra/adatpters.infra/asset.adapters";
+import { assetUseCases } from "../infra/adapters.infra/asset.adapters";
 
 interface ReqBody {
   name: string;
