@@ -10,20 +10,11 @@ export class UserInfraRepository implements UserContractsRepo {
 
   async save(data: UserInputDTO): Promise<void> {
     try{
-      await db.insert(user).values({ 
-        name: data.name, 
-        email: data.email, 
-        brokerage: 
-        data.brokerage 
-      })
+      await db.insert(user).values(data);
     }
     catch(err) {
       if(err instanceof Error) throw new Error(err.message);
     }
-  }
-
-  async getAll(): Promise<User[]>{
-   return await db.query.user.findMany(); 
   }
 
   async fetchOperations(data: {userId: number, assetId: number }): Promise<Operation[]> {
@@ -32,7 +23,7 @@ export class UserInfraRepository implements UserContractsRepo {
       .where(and(
         eq(operation.userId, data.userId),
         eq(operation.assetId, data.assetId),
-        gte(operation.dateHour, sql`NOW() - INTERVAL 30 day`)
+        gte(operation.dateHour, sql`NOW() - INTERVAL 5 hour`)
       ));
   }
 }

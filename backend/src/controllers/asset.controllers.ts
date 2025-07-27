@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { createAssetUseCase } from "../infra/plugin/plugin.layers";
+import { assetUseCases } from "../infra/adatpters.infra/asset.adapters";
 
 interface ReqBody {
   name: string;
@@ -9,7 +9,7 @@ interface ReqBody {
 export const createAsset = async(req: FastifyRequest<{ Body: ReqBody }>, reply: FastifyReply) => {
   try{
     const { name, code } = req.body;
-    await createAssetUseCase.execute({ name: name, code: code });
+    await assetUseCases.create.execute({ name: name, code: code });
     reply.status(200).send({ Message: "Asset created with success!"});
   }
   catch(err) {

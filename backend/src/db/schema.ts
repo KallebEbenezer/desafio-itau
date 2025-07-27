@@ -14,16 +14,16 @@ export const asset = mysqlTable('asset', {
   name: varchar("name", { length: 45 }).notNull().unique()
 });
 
-  export const operation = mysqlTable('operation', {
-    id: int().primaryKey().autoincrement(), 
-    userId: int("user_id").references(() => user.id),
-    assetId: int("asset_id").references(() => asset.id),
-    quantity: int("quantity").notNull(),
-    unityPrice: float("unity_price").notNull(),
-    operationType: mysqlEnum(['buy', 'sale']).notNull(),
-    brokerage: float("average").notNull(),
-    dateHour: datetime("date_hour").default(sql`CURRENT_TIMESTAMP`)
-  })
+export const operation = mysqlTable('operation', {
+  id: int().primaryKey().autoincrement(), 
+  userId: int("user_id").references(() => user.id),
+  assetId: int("asset_id").references(() => asset.id),
+  quantity: int("quantity").notNull(),
+  unityPrice: float("unity_price").notNull(),
+  operation_type: mysqlEnum(['buy', 'sale']).notNull(),
+  brokerage: float("average").notNull(),
+  dateHour: datetime("date_hour").default(sql`CURRENT_TIMESTAMP`)
+})
 
 export const position = mysqlTable('position', {
   id: int("id").primaryKey().autoincrement(),

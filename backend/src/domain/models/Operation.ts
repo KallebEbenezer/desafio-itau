@@ -4,7 +4,7 @@ export class Operation {
     public assetId: number, 
     public quantity: number,
     public unityPrice: number,
-    public operationType: "buy" | "sale",
+    public operation_type: "buy" | "sale",
     public brokerage: number
   ) {}
 }

@@ -7,6 +7,6 @@
 //   it("Create new user", async () => {
 //     const result = uuid
 
-//     expect(result).toStrictEqual({ })
+//     expect(result).toBeTypeOf()
 //   })
 // })
