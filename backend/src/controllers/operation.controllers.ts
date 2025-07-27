@@ -9,9 +9,7 @@ export const createOperation = async(
   console.log(req.body);
   try{
     const data: OperationInputDTO = req.body;
-    await operationUseCases.create.execute(
-      data
-    )
+    await operationUseCases.create.execute(data)
     reply.status(200).send("Created with sucessful!")
   }
   catch(err) {

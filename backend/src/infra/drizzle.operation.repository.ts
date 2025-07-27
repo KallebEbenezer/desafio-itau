@@ -1,6 +1,6 @@
 import { OperationContractsRepo } from "../application/contracts/operation.contracts";
-import { db } from "../db";
-import { operation } from "../db/schema";
+import { db } from "./db";
+import { operation } from "./db/schema";
 import { OperationInputDTO } from "../DTO/operation.dto";
 
 export class OperationInfraRepo implements OperationContractsRepo {

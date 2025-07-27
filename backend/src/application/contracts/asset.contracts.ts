@@ -1,4 +1,4 @@
-import { asset } from "../../db/schema";
+import { asset } from "../../infra/db/schema";
 import { AssetInputDTO } from "../../DTO/asset.dto";
 
 export interface AssetContractsRepo {

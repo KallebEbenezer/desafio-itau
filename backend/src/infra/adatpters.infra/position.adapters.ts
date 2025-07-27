@@ -4,10 +4,9 @@ import { FindPositionsUseCase } from "../../application/use-cases/position/find"
 import { PositionInfraRepository } from "../drizzle.position.repository";
 
 const positionInfraRepo = new PositionInfraRepository();
+const createOrUpdateUseCase = new CreateOrUpdateUseCase();
 const findPositionUseCase = new FindPositionsUseCase(positionInfraRepo);
 const createPositionUseCase = new CreatePositionUseCase(positionInfraRepo);
-
-const createOrUpdateUseCase = new CreateOrUpdateUseCase(findPositionUseCase, createPositionUseCase);
 
 export const positionUseCases = {
   findPosition: findPositionUseCase,

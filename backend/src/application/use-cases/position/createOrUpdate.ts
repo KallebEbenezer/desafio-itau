@@ -1,17 +1,11 @@
-import { CreatePositionUseCase } from "./create";
-import { FindPositionsUseCase } from "./find";
+import { positionUseCases } from "../../../infra/adatpters.infra/position.adapters";
 
 export class CreateOrUpdateUseCase {
-  constructor(
-    private readonly findPositions: FindPositionsUseCase,
-    private readonly createPosition: CreatePositionUseCase
-  ) {}
-
-  async execute(data: { userId: number, assetId: number } ) {
-    const positions = await this.findPositions.execute(data); 
+  async execute(data: { userId: number, assetId: number, type: string }) {
+    const positions = await positionUseCases.findPosition.execute(data); 
 
     if(positions.length <= 0) {
-      await this.createPosition.execute(data);
+      await positionUseCases.createPosition.execute(data);
     }
   }
 } 

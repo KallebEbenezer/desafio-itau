@@ -1,6 +1,6 @@
-import { db } from "../db";
+import { db } from "./db";
 import { positionType } from "../domain/types/position.types";
-import { position } from "../db/schema";
+import { position } from "./db/schema";
 import { and, eq } from "drizzle-orm";
 import { PositionInputDTO } from "../DTO/position.dto";
 import { PositionContractsRepository } from "../application/contracts/position.contracts";
@@ -16,7 +16,16 @@ export class PositionInfraRepository implements PositionContractsRepository {
       )
   }
 
-  async create(data: PositionInputDTO) {
-    await db.insert(position).values(data);
+  async save(data: PositionInputDTO) {
+    try{
+      await db.insert(position).values(data);
+    }
+    catch(err) {
+      throw err;
+    }
+  }
+
+  async findRepository() {
+    
   }
 }

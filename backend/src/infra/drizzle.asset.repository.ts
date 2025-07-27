@@ -1,7 +1,7 @@
 import { AssetContractsRepo } from "../application/contracts/asset.contracts";
 import { AssetInputDTO } from "../DTO/asset.dto";
-import { db } from "../db";
-import { asset } from "../db/schema";
+import { db } from "./db";
+import { asset } from "./db/schema";
 
 export class AssetInfraRepository implements AssetContractsRepo {
   async save(data: AssetInputDTO) {

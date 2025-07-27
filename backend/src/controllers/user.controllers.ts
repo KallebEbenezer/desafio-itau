@@ -33,4 +33,4 @@ export const fetchOperations = async(req: FastifyRequest<{ Body: FetchOperation 
   catch(err) {
     if(err instanceof Error) reply.send({ Error: err.message });
   }
-}
+} 

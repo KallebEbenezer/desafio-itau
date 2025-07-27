@@ -3,6 +3,6 @@ export interface OperationInputDTO {
     assetId: number, 
     quantity: number,
     unityPrice: number,
-    operation_type: "buy" | "sale",
+    operation_type: string,
     brokerage: number
 }

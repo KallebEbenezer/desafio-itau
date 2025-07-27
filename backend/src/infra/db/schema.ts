@@ -1,6 +1,10 @@
 import { mysqlTable, int, varchar, float, mysqlEnum, datetime } from "drizzle-orm/mysql-core";
 import { sql } from "drizzle-orm";
 
+type myRow = {
+  operation_type: string
+}
+
 export const user = mysqlTable('user', {
   id: int("id").primaryKey().autoincrement(),
   name: varchar("name", { length: 20 }).notNull().unique(),
@@ -20,7 +24,7 @@ export const operation = mysqlTable('operation', {
   assetId: int("asset_id").references(() => asset.id),
   quantity: int("quantity").notNull(),
   unityPrice: float("unity_price").notNull(),
-  operation_type: mysqlEnum(['buy', 'sale']).notNull(),
+  operation_type: varchar("operation_type", { length: 10}).notNull(),
   brokerage: float("average").notNull(),
   dateHour: datetime("date_hour").default(sql`CURRENT_TIMESTAMP`)
 })
