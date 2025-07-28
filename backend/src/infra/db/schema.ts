@@ -25,9 +25,9 @@ export const operation = mysqlTable('operation', {
   quantity: int("quantity").notNull(),
   unityPrice: float("unity_price").notNull(),
   operation_type: varchar("operation_type", { length: 10}).notNull(),
-  brokerage: float("average").notNull(),
+  brokerage: float("brokerage").notNull(),
   dateHour: datetime("date_hour").default(sql`CURRENT_TIMESTAMP`)
-})
+});
 
 export const position = mysqlTable('position', {
   id: int("id").primaryKey().autoincrement(),

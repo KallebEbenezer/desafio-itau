@@ -21,11 +21,24 @@ export class PositionInfraRepository implements PositionContractsRepository {
       await db.insert(position).values(data);
     }
     catch(err) {
-      throw err;
+      if(err instanceof Error )throw err;
     }
   }
 
-  async findRepository() {
-    
+  async update(data: PositionInputDTO) {
+    try{
+      await db.update(position).set({
+        quantity: data.quantity,
+        averagePrice: data.averagePrice,
+        pl: data.pl
+      })
+      .where(and(
+        eq(position.userId, data.userId),
+        eq(position.assetId, data.assetId)
+      ))
+    }
+    catch(err) {
+      if(err instanceof Error) throw err;
+    }
   }
 }

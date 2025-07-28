@@ -13,7 +13,6 @@ export class CreateOperationUseCase {
     await positionUseCases.createOrUpdate.execute({
       userId: data.userId, 
       assetId: data.assetId, 
-      type: data.operation_type
     });
   }
 }

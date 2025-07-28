@@ -3,31 +3,31 @@ import { db } from "../db";
 import { sql, and, eq } from "drizzle-orm";
 
 interface paramsQuery {
-  userId: number, 
+  userId: number,
   assetId: number,
-  type: string
 }
 
-export async function operationsAndPrice(data: paramsQuery){
-  const result = await db.select(
-    { 
-      totalOperations: sql<number>`SUM(${operation.quantity})`,
-      totalPrice: sql<number>`SUM(${operation.unityPrice})`
-    }
-  ).from(operation).where(and(
-    eq(operation.userId, data.userId),
-    eq(operation.assetId, data.assetId),
-    eq(operation.operation_type, data.type)
-  )); 
+export async function operationsAndPrice(data: paramsQuery) {
+  const result = await db.select({
+    totalInvestiments: sql<number>`SUM(${operation.quantity} * ${operation.unityPrice})`,
+    totalQuantity: sql<number>`SUM(${operation.quantity})`
+  })
+    .from(operation)
+    .where(and(
+      eq(operation.userId, data.userId),
+      eq(operation.assetId, data.assetId),
+      eq(operation.operation_type, "buy")
+    ));
+
   return {
-    totalOperations: Number(result[0]?.totalOperations ?? 0),
-    totalPrice: Number(result[0]?.totalPrice ?? 0)
+    totalInvestiments: Number(result[0]?.totalInvestiments ?? 0),
+    totalQuantity: Number(result[0]?.totalQuantity ?? 0)
   }
 }
 
 export default async function AveragePrice(data: paramsQuery) {
-  const result = operationsAndPrice({ userId: data.userId, assetId: data.assetId, type: data.type});
-  const totalPrice = (await result).totalPrice;
-  const totalOp = (await result).totalOperations;
-  return Number(totalOp / totalPrice)
+  const result = operationsAndPrice({ userId: data.userId, assetId: data.assetId });
+  const totalPrice = (await result).totalInvestiments;
+  const totalOperations = (await result).totalQuantity;
+  return  Number((totalPrice / totalOperations).toFixed(2));
 }
