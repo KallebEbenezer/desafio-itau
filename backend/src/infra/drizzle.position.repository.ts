@@ -2,7 +2,7 @@ import { db } from "./db";
 import { positionType } from "../domain/types/position.types";
 import { position } from "./db/schema";
 import { and, eq } from "drizzle-orm";
-import { PositionInputDTO } from "../DTO/position.dto";
+import { PositionInputDTO, PositionOutPutDTO } from "../DTO/position.dto";
 import { PositionContractsRepository } from "../application/contracts/position.contracts";
 
 export class PositionInfraRepository implements PositionContractsRepository {

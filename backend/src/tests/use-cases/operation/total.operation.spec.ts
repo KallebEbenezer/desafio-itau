@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
-import SumTotalOperations from "../../../infra/drizzle-querys/quantityOperations";
+import { operationUseCases } from "../../../infra/adapters.infra/operation.adapters";
 
 describe("Must be return a value of sum", () => {
   it("Fetch sum of operations", async () => {
-    const result = await SumTotalOperations({userId: 4, assetId: 2 })
+    const result = await operationUseCases.sumTotalOperations.execute({userId: 1, assetId: 1 })
 
-    expect(result).toBe(40)
+    expect(result).toBe(5)
   })
 })  

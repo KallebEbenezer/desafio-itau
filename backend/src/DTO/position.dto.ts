@@ -6,7 +6,7 @@ export interface PositionInputDTO {
   pl: number
 }
 
-export interface PositionOutPutInterface {
+export interface PositionOutPutDTO {
   id: number,
   userId: number,
   assetId: number,

@@ -1,11 +1,11 @@
-import { UserContractsRepo } from "../../contracts/user.contracts";
+// import { UserContractsRepo } from "../../contracts/user.contracts";
 
-export class FindAllUseCase {
-  constructor(
-    private readonly userRepository: UserContractsRepo
-  ) {}
+// export class FindAllUseCase {
+//   constructor(
+//     private readonly userRepository: UserContractsRepo
+//   ) {}
   
-  async execute() {
-    return await this.userRepository.getAll();
-  }
-}
+//   async execute() {
+//     return await this.userRepository.getAll();
+//   }
+// }

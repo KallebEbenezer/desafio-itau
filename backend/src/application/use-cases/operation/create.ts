@@ -7,7 +7,7 @@ export class CreateOperationUseCase {
     private readonly operationRepo: OperationContractsRepo,
   ) {}
 
-  async execute(data: OperationInputDTO) {
+  async execute(data: OperationInputDTO): Promise<void> {
     await this.operationRepo.save(data);
 
     await positionUseCases.createOrUpdate.execute({

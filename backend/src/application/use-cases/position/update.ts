@@ -1,6 +1,5 @@
 import { PositionInputDTO } from "../../../DTO/position.dto";
-import AveragePrice from "../../../infra/drizzle-querys/averagePrice";
-import SumTotalOperations from "../../../infra/drizzle-querys/quantityOperations";
+import { operationUseCases } from "../../../infra/adapters.infra/operation.adapters";
 import { PositionContractsRepository } from "../../contracts/position.contracts";
 
 export class PositionUpdateUseCase {
@@ -8,8 +7,11 @@ export class PositionUpdateUseCase {
 
   async execute(data: PositionInputDTO) {
     try {
-      const newQuantity = await SumTotalOperations({ userId: data.userId, assetId: data.assetId });
-      const newAvgPrice = await AveragePrice(data);
+      const newQuantity = await operationUseCases.sumTotalOperations.execute({
+        userId: data.userId,
+        assetId: data.assetId
+      });
+      const newAvgPrice = await operationUseCases.averagePrice.execute(data);
       const newPl = newQuantity * (14.5 - newAvgPrice);
       const newPosition = {
         ...data,

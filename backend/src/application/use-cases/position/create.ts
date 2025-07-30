@@ -1,24 +1,15 @@
 import { PositionContractsRepository } from "../../contracts/position.contracts";
-import SumTotalOperations from "../../../infra/drizzle-querys/quantityOperations";
-import AveragePrice from "../../../infra/drizzle-querys/averagePrice";
+import { PositionInputDTO } from "../../../DTO/position.dto";
 
 export class CreatePositionUseCase {
-  constructor(private readonly positionRepository: PositionContractsRepository) {}
+  constructor(
+    private readonly positionRepository: PositionContractsRepository
+  ) {}
 
-  async execute(data: { userId: number, assetId: number } ) {
+  async execute(data: PositionInputDTO) {
     try{
-      const quantity = await SumTotalOperations(data);
-      const averagePrice = await AveragePrice(data);
-      const pl = quantity * (14.5 - averagePrice) ;
-      const newPosition = {
-        userId: data.userId,
-        assetId: data.assetId,
-        quantity: quantity,
-        averagePrice: averagePrice,
-        pl: pl
-      }
-      await this.positionRepository.save(newPosition)
-      // <Test only> return "created"
+      console.log(data);
+      await this.positionRepository.save(data)
     }
     catch(err) {
       if(err instanceof Error) throw err;

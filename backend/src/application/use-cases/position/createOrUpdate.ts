@@ -1,15 +1,18 @@
 import { positionUseCases } from "../../../infra/adapters.infra/position.adapters";
+import { MakePosition } from "./makePosition";
 
 export class CreateOrUpdateUseCase {
+  private makePosition = new MakePosition();
+
   async execute(data: { userId: number, assetId: number }) {
-    const findPosition = await positionUseCases.findPosition.execute(data); 
+    const findPosition = await positionUseCases.findPosition.execute(data);
+    const newPosition = await this.makePosition.execute(data);
     
-    if(findPosition.length <= 0 ) {
-      await positionUseCases.createPosition.execute(data);
+    if (findPosition.length <= 0) {
+      await positionUseCases.createPosition.execute(newPosition);
     }
-    else{
-      const { id, ...position } = findPosition[0];
-      await positionUseCases.updatePosition.execute(position);
+    else {
+      await positionUseCases.updatePosition.execute(newPosition);
     }
   }
 }
