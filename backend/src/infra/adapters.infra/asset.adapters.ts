@@ -1,5 +1,5 @@
-import { AssetInfraRepository } from "../drizzle.asset.repository";
-import { CreateAssetUseCase } from "../../application/use-cases/asset/create";
+import { AssetInfraRepository } from "../drizzle.asset.repo";
+import { CreateAssetUseCase } from "../../application/use-cases/asset/save";
 
 const assetRepo = new AssetInfraRepository();
 const createAssetUseCase = new CreateAssetUseCase(assetRepo);

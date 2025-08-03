@@ -1,19 +1,12 @@
 import Fastify from "fastify";
 import { serverConfig } from "../utils/server_configs";
-import userRoutes from "./routes/user.routes";
-import { assetRoutes } from "./routes/asset.routes";
-import operationRoutes from "./routes/operation.routes";
-import { positionRoutes } from "./routes/position.routes";
+import RegisterRoutes from "./routes";
 
 const server = Fastify({ logger: true });
 
-server.register(userRoutes, { prefix: '/user' });
-server.register(assetRoutes, { prefix: '/asset'});
-server.register(operationRoutes, { prefix: '/operation'});
-server.register(positionRoutes, { prefix: '/position'});
-
 const startServer = async () => {
   try {
+    await RegisterRoutes(server);;
     await server.listen({ port: serverConfig.port, host: serverConfig.host });
     console.log(`✅ Listening at http://${serverConfig.host}:${serverConfig.port}`);
   } catch (err) {

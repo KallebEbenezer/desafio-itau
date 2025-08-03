@@ -12,7 +12,7 @@ export class CreateOrUpdateUseCase {
       await positionUseCases.createPosition.execute(newPosition);
     }
     else {
-      await positionUseCases.updatePosition.execute(newPosition);
+      await positionUseCases.updatePosition.updateOne(newPosition);
     }
   }
 }

@@ -1,8 +1,8 @@
-import { CreatePositionUseCase } from "../../application/use-cases/position/create";
+import { CreatePositionUseCase } from "../../application/use-cases/position/save";
 import { CreateOrUpdateUseCase } from "../../application/use-cases/position/createOrUpdate";
 import { FindPositionsUseCase } from "../../application/use-cases/position/find";
 import { PositionUpdateUseCase } from "../../application/use-cases/position/update";
-import { PositionInfraRepository } from "../drizzle.position.repository";
+import { PositionInfraRepository } from "../drizzle.position.repo";
 
 const positionInfraRepo = new PositionInfraRepository();
 const createOrUpdateUseCase = new CreateOrUpdateUseCase();

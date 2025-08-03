@@ -1,5 +1,5 @@
-import { OperationInfraRepo } from "../drizzle.operation.repository";
-import { CreateOperationUseCase } from "../../application/use-cases/operation/create";
+import { OperationInfraRepo } from "../drizzle.operation.repo";
+import { CreateOperationUseCase } from "../../application/use-cases/operation/save";
 import { SumTotalOperations } from "../../application/use-cases/operation/sumTotalOperations";
 import { AveragePriceUseCase } from "../../application/use-cases/operation/averagePrice";
 

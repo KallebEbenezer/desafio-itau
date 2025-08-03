@@ -1,10 +1,6 @@
 import { mysqlTable, int, varchar, float, mysqlEnum, datetime } from "drizzle-orm/mysql-core";
 import { sql } from "drizzle-orm";
 
-type myRow = {
-  operation_type: string
-}
-
 export const user = mysqlTable('user', {
   id: int("id").primaryKey().autoincrement(),
   name: varchar("name", { length: 20 }).notNull().unique(),
@@ -36,4 +32,11 @@ export const position = mysqlTable('position', {
   quantity: int("quantity").notNull(),
   averagePrice: float("average_price").notNull(),
   pl: float("pl").notNull()
+});
+
+export const quotation = mysqlTable('quotation', {
+  id: int("id").primaryKey().autoincrement(),
+  assetId: int("asset_id").references(() => asset.id),
+  unityPrice: float("unity_price").notNull(),
+  dateHour: datetime("date_hour").default(sql`CURRENT_TIMESTAMP`)
 })

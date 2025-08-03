@@ -4,15 +4,14 @@ import { PositionInputDTO } from "../../../DTO/position.dto";
 export class CreatePositionUseCase {
   constructor(
     private readonly positionRepository: PositionContractsRepository
-  ) {}
+  ) { }
 
   async execute(data: PositionInputDTO) {
-    try{
-      console.log(data);
-      await this.positionRepository.save(data)
+    try {
+      await this.positionRepository.save(data);
     }
-    catch(err) {
-      if(err instanceof Error) throw err;
+    catch (err) {
+      if (err instanceof Error) throw err;
     }
   }
 }

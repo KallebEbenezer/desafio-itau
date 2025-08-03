@@ -1,7 +1,6 @@
 import { db } from "./db";
 import { eq, and, gte, sql } from "drizzle-orm"
 import { operation, user } from "./db/schema";
-import { User } from "../domain/types/user.types";
 import { UserContractsRepo } from "../application/contracts/user.contracts";
 import { UserInputDTO } from "../DTO/user.dto";
 import { Operation } from "../domain/types/operation.types";
